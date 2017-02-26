@@ -10,6 +10,9 @@ var mongoose = require('mongoose')
 var index = require('./routes/index');
 var api = require('./routes/api');
 var account  = require('./routes/account');
+var shipstation  = require('./routes/shipstation');
+
+
 var app = express();
 require('dotenv').config()
 
@@ -45,6 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/api', api);
 app.use('/account', account);
+app.use('/shipstation', shipstation);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
