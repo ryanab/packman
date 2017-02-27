@@ -5,7 +5,10 @@ var controllers = require('../controllers')
 
 router.post('/order/:account', function(req,res,next){
   //need to validate that the post is from shipstation
+  //additionally need to perform some type of hasing on mongo id 
   var orderUrl = req.body.resource_url
+  var account = req.params.account
+
   superagent
   .get(orderUrl)
   .set('Accept', 'application/json')
@@ -17,6 +20,7 @@ router.post('/order/:account', function(req,res,next){
     }
     var ordersArray = response.body.orders
     ordersArray.forEach(function(order, i){
+      order.account = account
       controllers.order.create(order)
       .then(function(response){
         //send this to firebase

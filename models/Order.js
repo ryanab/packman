@@ -4,6 +4,8 @@ var OrderSchema = new mongoose.Schema({
   orderId: {type: String, default: ''},
   orderNumber: {type:String, default:''},
   items: {type:[mongoose.Schema.Types.Mixed], default:[]},
+  packed: {type:Boolean, default:false},
+  account: {type: String, default:''},
   timestamp: {type:Date, default: Date.now()}
 })
 
@@ -12,6 +14,8 @@ OrderSchema.methods.summary = function(){
     orderId: this.email,
     orderNumber: this.account,
     items: this.items,
+    account: this.account,
+    packed: this.packed.toString(),
     timestamp: this.timestamp,
     id: this._id.toString()
   }

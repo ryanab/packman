@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 class Orders extends Component{
 
   componentDidMount(){
-    this.props.getOrders()
+    this.props.getOrders({account: this.props.user.id, packed: false})
   }
 
   render(){
@@ -19,13 +19,11 @@ class Orders extends Component{
 
 const stateToProps = (state) => {
   return {
-
   }
 }
 
 const dispatchToProps = (dispatch) => {
   return {
-
   }
 }
 
