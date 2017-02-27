@@ -3,6 +3,8 @@ var mongoose = require('mongoose')
 var ProfileSchema = new mongoose.Schema({
   email: {type: String, default: ''},
   password: {type:String, default:''},
+  shipstationAPIKey: {type:String, default:''},
+  shipStationAPISecret: {type:String, default:''},
   account: {type: String, default:''},//parent account, for multipel users from one company
   timestamp: {type:Date, default: Date.now()}
 })
