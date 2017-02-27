@@ -5,7 +5,7 @@ var controllers = require('../controllers')
 
 router.post('/order', function(req,res,next){
   var orderUrl = req.body.resource_url
-
+  console.log(JSON.stringify(req.body))
   superagent
   .get(orderUrl)
   .set('Accept', 'application/json')
@@ -16,7 +16,7 @@ router.post('/order', function(req,res,next){
       return
     }
     var ordersArray = req.body.orders
-    orders.forEach(function(order, i){
+    ordersArray.forEach(function(order, i){
       controllers.order.create(order)
       .then(function(response){
         //send this to firebase
