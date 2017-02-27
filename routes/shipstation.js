@@ -5,7 +5,6 @@ var controllers = require('../controllers')
 
 router.post('/order', function(req,res,next){
   var orderUrl = req.body.resource_url
-  console.log(JSON.stringify(req.body))
   superagent
   .get(orderUrl)
   .set('Accept', 'application/json')
