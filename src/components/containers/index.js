@@ -1,5 +1,7 @@
 import Authenticate from './Authenticate'
+import Orders from './Orders'
 
 export {
-  Authenticate
+  Authenticate,
+  Orders
 }

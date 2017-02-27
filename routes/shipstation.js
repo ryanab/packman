@@ -3,7 +3,8 @@ var router = express.Router()
 var superagent = require('superagent')
 var controllers = require('../controllers')
 
-router.post('/order', function(req,res,next){
+router.post('/order/:account', function(req,res,next){
+  //need to validate that the post is from shipstation
   var orderUrl = req.body.resource_url
   superagent
   .get(orderUrl)
