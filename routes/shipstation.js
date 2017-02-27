@@ -15,7 +15,7 @@ router.post('/order', function(req,res,next){
       console.log(err)
       return
     }
-    var ordersArray = req.body.orders
+    var ordersArray = response.body.orders
     ordersArray.forEach(function(order, i){
       controllers.order.create(order)
       .then(function(response){
