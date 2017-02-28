@@ -17,8 +17,7 @@ class Orders extends Component{
   render(){ 
     return(
       <div>
-        <div className="row">
-          <div className="col-md-12">
+          <div className={"col-md-"+this.props.colLength}>
           
               <div className="portlet light ">
                   <div className="portlet-title">
@@ -69,7 +68,6 @@ class Orders extends Component{
                     </div>
                 </div>
             </div>
-          </div>
         </div>
     )
   }

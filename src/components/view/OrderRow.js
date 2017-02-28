@@ -1,4 +1,5 @@
 import React, { Component }from 'react'
+import { Link } from 'react-router'
 
 export default (props) => {
     let order = props.order
@@ -16,7 +17,7 @@ export default (props) => {
             <span className="label label-sm label-info"> 3 </span>
             <span className="label label-sm label-danger"> 4 </span>
           </td>
-          <td><button type="button" className="btn btn-default">Pack</button></td>
+          <td><Link to={'/order/' + order.id}><button type="button" className="btn btn-default">Pack</button></Link></td>
       </tr>        
     )    
 }

@@ -33,7 +33,10 @@ export default (props) => {
                         </div>
                         <div className="page-content">
                             <div className="container">
-                              {props.children}
+                                <div className="row">
+                                    <Orders colLength={9}/>
+                                    <Orders colLength={3}/>
+                                </div>
                             </div>
                         </div>
                     </div>
