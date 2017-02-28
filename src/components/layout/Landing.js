@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Orders } from '../containers'
+import { Authenticate } from '../containers'
 
 export default (props) => {
   return(
     <div>
-      <Orders />
+      <Authenticate />
     </div>
   )
 }

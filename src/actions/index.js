@@ -53,5 +53,17 @@ export default {
     return (dispatch) => {
       return dispatch(getRequest('/account/currentuser', null, constants.CURRENT_USER_RECEIVED))
     }
+  },
+
+  logout: () => {
+    return (dispatch) => {
+      return dispatch(getRequest('/account/logout', null, constants.CURRENT_USER_RECEIVED))
+    }
+  },
+
+  getNonpackedOrders: (params) => {
+    return (dispatch) => {
+      return dispatch(getRequest('/api/order', null, constants.ORDERS_RECEIVED))
+    }
   }
 }
