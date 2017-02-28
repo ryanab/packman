@@ -16,7 +16,6 @@ var express = require('express');
         
         controller.find(req.query, false)
         .then(function(results){
-            console.log(results)
             res.json({
                 confirmation: 'success',
                 data: results

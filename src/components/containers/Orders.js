@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import actions from '../../actions'
 import { connect } from 'react-redux'
+import { Order } from '../view'
 
 class Orders extends Component{
 
   componentDidMount(){
     //this.props.getNonpackedOrders({account: this.props.user.id, packed: false})
     this.props.getNonpackedOrders({packed: false})
-
   }
 
   packOrder(event, id){
@@ -20,11 +20,11 @@ class Orders extends Component{
         <h1>ORDERS</h1>
         <h3>To be Packed</h3>
         {
-          (this.props.nonPackedOrders.list.length==0) ? <h3>All packed</h3> :
+          (this.props.nonPackedOrders.length==0) ? <h3>All packed</h3> :
           <ol>
             {
-              this.props.nonPackedOrders.list.map((order, i) => {
-                return <li key={order.id}>{order.id + ':  PACKED:   ' + order.packed}</li>
+              this.props.nonPackedOrders.map((order, i) => {
+                return <li key={order.id}> <Order order={order}/> </li>
               })
             }
           </ol>
@@ -32,10 +32,10 @@ class Orders extends Component{
         <br /> <br /> <br />
         <h3>Recently Packed</h3>
         {
-          (this.props.nonPackedOrders.list.length==0) ? <h3>All packed</h3> :
+          (this.props.nonPackedOrders.length==0) ? <h3>No Recent Data Avialable</h3> :
           <ol>
             {
-              this.props.nonPackedOrders.list.map((order, i) => {
+              this.props.recentlyPackedOrders.map((order, i) => {
                 return <li key={order.id}>{order.id + ':  PACKED:   ' + order.packed}</li>
               })
             }
@@ -49,7 +49,8 @@ class Orders extends Component{
 const stateToProps = (state) => {
   return {
     user: state.account.user,
-    nonPackedOrders: state.order
+    nonPackedOrders: state.order.nonPackedList,
+    recentlyPackedOrders: state.order.packedList
   }
 }
 
