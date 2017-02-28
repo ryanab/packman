@@ -19,6 +19,7 @@ class Orders extends Component{
       <div>
         <div className="row">
           <div className="col-md-12">
+          
               <div className="portlet light ">
                   <div className="portlet-title">
                       <div className="caption">
@@ -38,6 +39,8 @@ class Orders extends Component{
                       </div>
                   </div>
                   <div className="portlet-body">
+                      {
+                        (this.props.nonPackedOrders.length==0) ? <h3>All packed</h3> :
                       <div className="table-scrollable">
                           <table className="table table-hover">
                               <thead>
@@ -52,19 +55,17 @@ class Orders extends Component{
                                       <th></th>
                                   </tr>
                               </thead>
-                                {
-                                  (this.props.nonPackedOrders.length==0) ? <h3>All packed</h3>
-                                  :
+                                
                                   <tbody>
                                     {
                                       this.props.nonPackedOrders.map((order, i) => {
-                                        return <OrderRow order={order}/>
+                                        return <OrderRow key={order.id} order={order}/>
                                       })
                                     }
                                   </tbody>
-                                }
-                            </table>
-                        </div>
+                                </table>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

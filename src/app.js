@@ -15,6 +15,7 @@ class App extends Component{
             <Route path="/" component={Orders} />
             <Route path="/" component={Orders} />
             <Route path="/" component={Orders} />
+            <Route path="/settings" component={Orders} />
           </Route>
         </Router>
       </Provider>

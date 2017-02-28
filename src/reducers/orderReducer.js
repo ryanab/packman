@@ -14,7 +14,6 @@ export default(state = initialState, action) =>{
     let updatedList = Object.assign([], action.payload)
     updated.nonPackedList = updatedList
     //iterate through array and store each key pointint to the order object
-    console.log(JSON.stringify(updated))
     return updated
 
     default:
