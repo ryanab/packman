@@ -7,7 +7,7 @@ var OrderSchema = new mongoose.Schema({
   createDate: {type:Date, default:Date.now()},
   shipByDate: {type:Date, default:Date.now()},
   orderStatus: {type:String, default:''},
-  shipTo: {type:String, default:''},
+  shipTo: {type:mongoose.Schema.Types,Mixed, default:{}},
   orderTotal: {type:String, default:''},
   customerNotes: {type:String, default:''},
   internalNotes: {type:String, default:''},
