@@ -21,8 +21,8 @@ var OrderSchema = new mongoose.Schema({
 
 OrderSchema.methods.summary = function(){
   var summary = {
-    orderId: this.email,
-    orderNumber: this.account,
+    orderId: this.orderId,
+    orderNumber: this.orderNumber,
     orderDate: this.orderDate,
     createDate: this.createDate,
     shipByDate: this.shipByDate,

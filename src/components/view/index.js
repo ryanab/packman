@@ -4,6 +4,7 @@ import Order from './Order'
 import Header from './Header'
 import Footer from './Footer'
 import Nav from './Nav'
+import OrderRow from './OrderRow'
 
 export {
   Login,
@@ -11,5 +12,6 @@ export {
   Order,
   Header,
   Footer,
-  Nav
+  Nav,
+  OrderRow
 }

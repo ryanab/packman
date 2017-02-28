@@ -9,12 +9,12 @@ import {Router, Route, IndexRoute, browserHistory } from 'react-router'
 class App extends Component{
   render(){
     return(
-
       <Provider store={store.configureStore()} >
         <Router history={browserHistory}>
-          <Route path="/" component={Landing} />
           <Route component={Home} >
-            <Route path="/home" component={Orders} />
+            <Route path="/" component={Orders} />
+            <Route path="/" component={Orders} />
+            <Route path="/" component={Orders} />
           </Route>
         </Router>
       </Provider>
