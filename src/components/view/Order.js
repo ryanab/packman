@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 export default (props) => {
   return(
-    <div>
-      TEST ORDER
+    <div style={{border: '1px solid black'}}>
+      
     </div>
   )
 }
