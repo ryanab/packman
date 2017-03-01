@@ -34,7 +34,7 @@ OrderSchema.methods.summary = function(){
     gift: this.gift,
     giftMessage: this.giftMessage,
     items: this.items,
-    packed: this.packed.toString(),
+    packed: this.packed,
     account: this.account,
     timestamp: this.timestamp,
     id: this._id.toString()

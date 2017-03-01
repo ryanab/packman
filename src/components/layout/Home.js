@@ -34,8 +34,7 @@ export default (props) => {
                         <div className="page-content">
                             <div className="container">
                                 <div className="row">
-                                    <Orders colLength={9}/>
-                                    <Orders colLength={3}/>
+                                    {props.children}
                                 </div>
                             </div>
                         </div>
