@@ -2,8 +2,16 @@ import React, { Component } from 'react'
 import actions from '../../actions'
 import { connect } from 'react-redux'
 import { OrderRow } from '../view'
+import { browserHistory } from 'react-router'
 
 class Orders extends Component{
+
+  constructor(){
+    super()
+    this.state = {
+      scanned: ''
+    }
+  }
 
   componentDidMount(){
     //this.props.getNonpackedOrders({account: this.props.user.id, packed: false})
@@ -14,27 +22,46 @@ class Orders extends Component{
     this.props.markOrderPacked({id: id, packed: true})
   }
 
+  barcodeScanned(event){
+    let updated = event.target.value
+    this.setState({
+      scanned: updated
+    })
+  }
+
+  componentDidUpdate(){
+    let barcode = this.state.scanned
+    this.props.nonPackedOrders.forEach((order, i) => {
+      if(order.orderId == barcode){
+        if(order.orderId==null || order.orderId=='')
+          return 
+        browserHistory.push('/order/' + order.id)
+      }
+      console.log()
+    })
+  }
+
+  componentWillUnmount(){
+    this.refs.barcodeInput = ""
+  }
+
   render(){ 
     return(
           <div className={"col-md-12"}>
-          
               <div className="portlet light ">
                   <div className="portlet-title">
-                      <div className="caption">
-                          <i className="icon-social-dribbble font-green"></i>
-                          <span className="caption-subject font-green bold uppercase">Simple Table</span>
-                      </div>
-                      <div className="actions">
-                          <a className="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                              <i className="icon-cloud-upload"></i>
-                          </a>
-                          <a className="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                              <i className="icon-wrench"></i>
-                          </a>
-                          <a className="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                              <i className="icon-trash"></i>
-                          </a>
-                      </div>
+                    <div className="actions">
+                        <a className="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i className="icon-cloud-upload"></i>
+                        </a>
+                        <a className="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i className="icon-wrench"></i>
+                        </a>
+                        <a className="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i className="icon-trash"></i>
+                        </a>
+                    </div>
+                    <input ref="barcodeInput" onChange={this.barcodeScanned.bind(this)} placeholder="Scan a barcode" className="form-control"/>
                   </div>
                   <div className="portlet-body">
                       {
@@ -50,7 +77,6 @@ class Orders extends Component{
                                       <th> Source </th>
                                       <th> Item Count </th>
                                       <th> Status </th>
-                                      <th></th>
                                   </tr>
                               </thead>
                                 

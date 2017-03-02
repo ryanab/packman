@@ -4,8 +4,7 @@ var superagent = require('superagent')
 var controllers = require('../controllers')
 
 router.post('/order/:account', function(req,res,next){
-  //need to validate that the post is from shipstation
-  //additionally need to perform some type of hasing on mongo id 
+  //additionally need to perform some type of hashing on mongo id 
   var orderUrl = req.body.resource_url
   var account = req.params.account
 
@@ -18,12 +17,17 @@ router.post('/order/:account', function(req,res,next){
       console.log(err)
       return
     }
+    //this must be moved to shipstation controller (this logis should not take place in route)
     var ordersArray = response.body.orders
     ordersArray.forEach(function(order, i){
+      order.items.forEach(function(order, i){
+        item.packed = false
+      })
       order.account = account
+      order.source = 'ShipStation'
       controllers.order.create(order)
       .then(function(response){
-        //send this to firebase
+        //send this to firebase or socket
       })
       .catch(function(err){
         console.log(err)

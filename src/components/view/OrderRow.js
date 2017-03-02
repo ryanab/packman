@@ -1,5 +1,6 @@
 import React, { Component }from 'react'
 import { Link } from 'react-router'
+import { DateTimeHelper } from '../../utils'
 
 export default (props) => {
     let order = props.order
@@ -7,8 +8,8 @@ export default (props) => {
       <tr>
           <td> 1 </td>
           <td> {order.orderId }  </td>
-          <td> {order.orderDate } </td>
-          <td> {order.orderDate } </td>
+          <td> {DateTimeHelper.formatDate(order.orderDate) } </td>
+          <td> {DateTimeHelper.formatTime(order.orderDate) } </td>
           <td> ShipStation </td>
           <td> {order.items.length}</td>
           <td>
@@ -17,7 +18,6 @@ export default (props) => {
             <span className="label label-sm label-info"> 3 </span>
             <span className="label label-sm label-danger"> 4 </span>
           </td>
-          <td><Link to={'/order/' + order.id}><button type="button" className="btn btn-default">Pack</button></Link></td>
       </tr>        
     )    
 }
