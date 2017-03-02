@@ -6,66 +6,78 @@ import {OrderItem } from '../view'
 
 class Order extends Component {
     //create seperate view components for the duplicate render code
+
+  //refactor to one array, current setup does not make sense  
+  constructor(){
+    super()
+    this.state = {
+      packed: [],
+      notPacked: [],
+      barcode: ''
+    }
+  }
+
+  componentDidMount(){
+    let items = this.props.orders[this.props.params.id].items
+    let packed = []
+    let notPacked = []
+    
+    items.forEach((item, i) => {
+      (item.packed) ? packed.push(item) : notPacked.push(item)  
+    })
+
+    this.setState({
+      packed: packed,
+      notPacked: notPacked
+    })
+  }
+
+  barcodeScanned(event){
+    let updated = event.target.value
+    this.setState({
+      scanned: updated
+    })
+  }
+  
+  componentDidUpdate(){
+    let barcode = this.state.scanned
+    this.state.notPacked.forEach((item, i) => {
+      if(item.sku == barcode){
+        if(item.sku==null || item.sku=='')
+          return
+        item['packed'] = true
+      }
+    })
+  }
+
+  componentWillUnmount(){
+    this.refs.barcodeInput = ""
+  }
+    
     render(){
-      let items = this.props.orders[this.props.params.id].items
-      let packed = []
-      let notPacked = []
-      
-      items.forEach((item, i) => {
-        if(item.packed){
-          packed.push(item)
-        }else{
-          notPacked.push(item)
-        }
-      })
-      console.log('Packed: ' + JSON.stringify(packed))
-      console.log('Not Packed: ' + JSON.stringify(notPacked))
         return (
-          <div>
-            <div className="col-lg-6">
-                  <div className="portlet light portlet-fit ">
-                      <div className="portlet-body" style={{padding: '0px'}}>
-                          <div className="mt-element-list">
-                              <div className="mt-list-head list-news font-white bg-blue">
-                                  <div className="list-head-title-container">
-                                      <span className="badge badge-primary pull-right">3</span>
-                                      <h3 className="list-title">Items to be Packed</h3>
-                                  </div>
-                              </div>
-                              <div className="mt-list-container list-news">
-                              {
-                                (notPacked.length==0) ? <h4>Nothing here</h4>
-                                :
-                                <ul>
-                                {
-                                  notPacked.map((item, i) =>{
-                                    return <OrderItem key={i} item={item}/>
-                                  })  
-                                }
-                                </ul>
-                              }
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>    
-              <div className="col-lg-6">
+            <div>
+              <div className="row">
+                <input ref="barcodeInput" onChange={this.barcodeScanned.bind(this)} className="form-control" style={{marginBottom: 15}} placeholder="Please enter or scan a barcode"/>
+              </div>
+              <div className="row">
+                <div className="col-lg-6">
                     <div className="portlet light portlet-fit ">
                         <div className="portlet-body" style={{padding: '0px'}}>
                             <div className="mt-element-list">
                                 <div className="mt-list-head list-news font-white bg-blue">
                                     <div className="list-head-title-container">
                                         <span className="badge badge-primary pull-right">3</span>
-                                        <h3 className="list-title">Packed</h3>
+                                        <h3 className="list-title">Items to be Packed</h3>
                                     </div>
                                 </div>
                                 <div className="mt-list-container list-news">
                                 {
-                                  (packed.length==0) ? null
+                                  (this.state.notPacked.length==0) ? <h4>Nothing here</h4>
                                   :
                                   <ul>
                                   {
-                                    packed.map((item, i) =>{
+                                    this.state.notPacked.map((item, i) =>{
                                       return <OrderItem key={i} item={item}/>
                                     })  
                                   }
@@ -75,8 +87,36 @@ class Order extends Component {
                             </div>
                         </div>
                     </div>
-                </div>   
-            </div>
+                </div>  
+                <div className="col-lg-6">
+                      <div className="portlet light portlet-fit ">
+                          <div className="portlet-body" style={{padding: '0px'}}>
+                              <div className="mt-element-list">
+                                  <div className="mt-list-head list-news font-white bg-blue">
+                                      <div className="list-head-title-container">
+                                          <span className="badge badge-primary pull-right">3</span>
+                                          <h3 className="list-title">Packed</h3>
+                                      </div>
+                                  </div>
+                                  <div className="mt-list-container list-news">
+                                  {
+                                    (this.state.packed.length==0) ? null
+                                    :
+                                    <ul>
+                                    {
+                                      this.state.packed.map((item, i) =>{
+                                        return <OrderItem key={i} item={item}/>
+                                      })  
+                                    }
+                                    </ul>
+                                  }
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
         )
     }    
 }

@@ -32,12 +32,11 @@ class Orders extends Component{
   componentDidUpdate(){
     let barcode = this.state.scanned
     this.props.nonPackedOrders.forEach((order, i) => {
-      if(order.orderId == barcode){
-        if(order.orderId==null || order.orderId=='')
-          return 
+      if(order.orderNumber == barcode){
+        if(order.orderNumber==null || order.orderNumber=='')
+          return
         browserHistory.push('/order/' + order.id)
       }
-      console.log()
     })
   }
 
@@ -47,6 +46,7 @@ class Orders extends Component{
 
   render(){ 
     return(
+      <div className="row">
           <div className={"col-md-12"}>
               <div className="portlet light ">
                   <div className="portlet-title">
@@ -70,7 +70,7 @@ class Orders extends Component{
                           <table className="table table-hover">
                               <thead>
                                   <tr>
-                                      <th></th>
+                                      <th> Order Number </th>
                                       <th> Order ID </th>
                                       <th> Date </th>
                                       <th> Time </th>
@@ -93,6 +93,7 @@ class Orders extends Component{
                     </div>
                 </div>
             </div>
+          </div>
     )
   }
 

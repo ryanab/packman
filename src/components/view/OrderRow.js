@@ -6,7 +6,7 @@ export default (props) => {
     let order = props.order
     return (
       <tr>
-          <td> 1 </td>
+          <td> {order.orderNumber }  </td>
           <td> {order.orderId }  </td>
           <td> {DateTimeHelper.formatDate(order.orderDate) } </td>
           <td> {DateTimeHelper.formatTime(order.orderDate) } </td>
@@ -18,6 +18,6 @@ export default (props) => {
             <span className="label label-sm label-info"> 3 </span>
             <span className="label label-sm label-danger"> 4 </span>
           </td>
-      </tr>        
-    )    
+      </tr>
+    )
 }

@@ -19,9 +19,7 @@ export default (props) => {
                     <div className="page-content-wrapper">
                         <div className="page-content">
                             <div className="container">
-                                <div className="row">
-                                    {props.children}
-                                </div>
+                                {props.children}
                             </div>
                         </div>
                     </div>
