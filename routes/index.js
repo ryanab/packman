@@ -40,7 +40,8 @@ router.get('/app', function(req, res, next) {
       console.log('User is:' + result)
       throw new Error()
     }
-    reducers['account'] = {user: result}
+    reducers['account'] = {user: null}
+    reducers.account.user = result
   })
   .then(function(){
     initialStore = store.configureStore(reducers)
@@ -56,13 +57,13 @@ router.get('/app', function(req, res, next) {
   })
 	.then(function(renderProps){
 		var html = ReactDOMServer.renderToString(React.createElement(ReactRouter.RouterContext, renderProps))
-	    console.log(html)
+		html = '<div>'+html+'</div>'
 	    res.render('main', { react: html, preloadedState: JSON.stringify(initialStore.getState()) })
 	    return
 	})
 	.catch(function(err){
 		console.log('NOT LOGGED IN: ' + err.message)
-	  return
+	  return res.redirect('/')
 	})
 });
 
