@@ -13,17 +13,24 @@ gulp.task('es6-es5', function(){
   .pipe(gulp.dest('./public/build/es5'))
 })
 
-// gulp.task('css', function(){
-//   return gulp.src({
-
-//   })
-// })
-
-// .pipe(minifyCSS())
-// .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
-// .pipe(gp_concat('style.min.css'))
-// .pipe(gulp.dest('./public/build/css'))
-
+gulp.task('css', function(){
+  return gulp.src([
+    "./public/assets/global/plugins/font-awesome/css/font-awesome.min.css",
+    ".public/assets/global/plugins/simple-line-icons/simple-line-icons.min.css",
+    "./public/assets/global/plugins/bootstrap/css/bootstrap.min.css",
+    "./public/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css",
+    "./public/assets/global/css/components.min.css",
+    "./public/assets/global/css/google-fonts.css",
+    "./public/assets/global/css/plugins.min.css",
+    "./public/assets/layouts/layout3/css/layout.min.css",
+    "./public/assets/layouts/layout3/css/themes/default.min.css",
+    "./public/assets/layouts/layout3/css/custom.min.css"
+  ])
+  .pipe(minifyCSS())
+  .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
+  .pipe(gp_concat('style.min.css'))
+  .pipe(gulp.dest('./public/build/css'))
+})
 // gulp.task('js', function(){
 //   return gulp.src([
       
