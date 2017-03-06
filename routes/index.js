@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require('express'); 
 var router = express.Router();
 var Promise = require('bluebird')
 var AccountController = require('../controllers/AccountController')
@@ -12,7 +12,7 @@ var serverapp = require(__BUILD_DIR__+'/es5/serverapp')
 var store = require(__BUILD_DIR__+'/es5/stores/index')
 var Home = require(__BUILD_DIR__+'/es5/components/layout/Home')
 
-matchRoutes = function(req, routes){
+var matchRoutes = function(req, routes){
 	return new Promise(function(resolve, reject){
 		ReactRouter.match({ routes: routes, location: req.url }, function(error, redirectLocation, renderProps){
 			if (error){
@@ -27,6 +27,7 @@ matchRoutes = function(req, routes){
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
+  return
 });
 
 router.get('/app', function(req, res, next) {
@@ -36,11 +37,10 @@ router.get('/app', function(req, res, next) {
   AccountController.currentUser(req)
   .then(function(result){
     if(result==null){
-      console.log(result)
-      res.redirect('/')
-      return
+      console.log('User is:' + result)
+      throw new Error()
     }
-    reducers.account.user = result
+    reducers['account'] = {user: result}
   })
   .then(function(){
     initialStore = store.configureStore(reducers)
@@ -57,12 +57,11 @@ router.get('/app', function(req, res, next) {
 	.then(function(renderProps){
 		var html = ReactDOMServer.renderToString(React.createElement(ReactRouter.RouterContext, renderProps))
 	    res.render('main', { react: html, preloadedState: JSON.stringify(initialStore.getState()) })
-      return
+	    return
 	})
 	.catch(function(err){
 		console.log('NOT LOGGED IN: ' + err.message)
-    res.redirect('/')
-    return
+	  return
 	})
 });
 
