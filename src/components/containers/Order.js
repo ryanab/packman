@@ -2,34 +2,12 @@ import React, { Component } from 'react'
 import actions from '../../actions'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import {OrderItem } from '../view'
+import { OrderItem } from '../view'
 
 class Order extends Component {
-    //create seperate view components for the duplicate render code
-
-  //refactor to one array, current setup does not make sense  
-  constructor(){
-    super()
-    this.state = {
-      packed: [],
-      notPacked: [],
-      barcode: ''
-    }
-  }
 
   componentDidMount(){
-    let items = this.props.orders[this.props.params.id].items
-    let packed = []
-    let notPacked = []
-    
-    items.forEach((item, i) => {
-      (item.packed) ? packed.push(item) : notPacked.push(item)  
-    })
-
-    this.setState({
-      packed: packed,
-      notPacked: notPacked
-    })
+  
   }
 
   barcodeScanned(event){
@@ -54,7 +32,10 @@ class Order extends Component {
     this.refs.barcodeInput = ""
   }
     
-    render(){
+    render(){ 
+
+
+
         return (
             <div>
               <div className="row">
