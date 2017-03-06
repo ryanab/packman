@@ -7,7 +7,7 @@ var React = require('react')
 var ReactRouter = require('react-router')
 var ReactDOMServer = require('react-dom/server')
 
-var __BUILD_DIR__ = '../public/build'
+var __BUILD_DIR__ = '../public/build' //may need to change on heorku
 var serverapp = require(__BUILD_DIR__+'/es5/serverapp')
 var store = require(__BUILD_DIR__+'/es5/stores/index')
 var Home = require(__BUILD_DIR__+'/es5/components/layout/Home')
@@ -56,6 +56,7 @@ router.get('/app', function(req, res, next) {
   })
 	.then(function(renderProps){
 		var html = ReactDOMServer.renderToString(React.createElement(ReactRouter.RouterContext, renderProps))
+	    console.log(html)
 	    res.render('main', { react: html, preloadedState: JSON.stringify(initialStore.getState()) })
 	    return
 	})
