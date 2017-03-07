@@ -63,7 +63,7 @@ export default {
 
   getNonpackedOrders: (params) => {
     return (dispatch) => {
-      return dispatch(getRequest('/api/order', null, constants.ORDERS_RECEIVED))
+      return dispatch(getRequest('/api/order', params, constants.ORDERS_RECEIVED))
     }
   }
 }

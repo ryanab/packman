@@ -14,8 +14,7 @@ class Orders extends Component{
   }
 
   componentDidMount(){
-    //this.props.getNonpackedOrders({account: this.props.user.id, packed: false})
-    this.props.getNonpackedOrders({packed: false})
+    this.props.getNonpackedOrders({account: this.props.user.id, packed: false})
   }
 
   packOrder(event, id){
