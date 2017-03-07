@@ -1,7 +1,7 @@
 var Profile = require('./ProfileController')
 var Promise = require('bluebird')
 var jwt = require('jsonwebtoken')
-
+var bcrypt = require('bcryptjs')
 
 module.exports = {
 
@@ -25,6 +25,29 @@ module.exports = {
           reject(err)
           return
         })
+      })
+    })
+  },
+  
+  login: function(req){
+    return new Promise(function(resolve, reject){
+      Profile.find({email: req.body.email}, true)
+      .then(function(results){
+        if(results.length==0){
+          throw new Error('No user found')
+        }
+        var profile = results[0]
+        
+        var isPasswordCorrect = bcrypt.compareSync(req.body.password, profile.password)
+        if(isPasswordCorrect==false){
+          throw new Error('Wrong password')
+        }
+        var token = jwt.sign({id: profile.id}, process.env.TOKEN_SECRET, {expiresIn: 4000})
+        req.session.token = token
+        resolve(profile.summary())
+      })
+      .catch(function(err){
+        reject(err)
       })
     })
   }

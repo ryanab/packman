@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Promise = require('bluebird')
 var AccountController = require('../controllers/AccountController')
+var validPages = ['login', 'register']
 
 var React = require('react')
 var ReactRouter = require('react-router')
@@ -30,8 +31,7 @@ router.get('/', function(req, res, next) {
   return
 });
 
-router.get('/app', function(req, res, next) {
-
+router.get('/app', function(req, res, next){
   var initialStore = null
   var reducers = {}
   AccountController.currentUser(req)
@@ -64,7 +64,40 @@ router.get('/app', function(req, res, next) {
 	.catch(function(err){
 		console.log('NOT LOGGED IN: ' + err.message)
 	  return res.redirect('/')
-	})
+	})  
+})
+
+router.get('/:page', function(req, res, next){
+  var page = req.params.page
+  if (validPages.indexOf(page)==-1){
+    res.redirect('/')
+    return
+  }
+  res.render(page)
+  return
+})
+
+router.post('/:page', function(req, res, next) {
+  var page = req.params.page
+  if(page!='login' && page!= 'register'){
+    res.redirect('/')
+    return
+  }
+  
+  if(page=='login'){
+    AccountController.login(req)
+    .then(function(result){
+      if(result!=null){
+        res.redirect('/app')
+        return
+      }
+    })
+    //will render login/reg templates with errors
+    .catch(function(err){
+      console.log(err)       
+    })
+  }
+  
 });
 
 

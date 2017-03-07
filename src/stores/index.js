@@ -8,7 +8,7 @@ export default {
 
 	configureStore: (initial) => {
 		const reducers = combineReducers({
-    	profile: profileReducer,
+    		profile: profileReducer,
 			account: accountReducer,
 			order: orderReducer
 		})

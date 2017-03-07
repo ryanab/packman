@@ -3,51 +3,27 @@ var router = express.Router()
 var bcrypt = require('bcryptjs')
 var jwt = require('jsonwebtoken')
 var Profile = require('../controllers/ProfileController')
+var Account = require('../controllers/AccountController')
 
 router.get('/:action', function(req, res, next){
   var action = req.params.action
-
+  
+  //may need to add handling for searching a non-existant ID 
   if(action=='currentuser'){
-    if(req.session==null){
+    Account.currentUser(req)
+    .then(function(result){
       res.json({
         confirmation: 'success',
-        user: null
+        user: result
       })
       return
-    }
-
-    if(req.session.token==null){
+    })
+    .catch(function(err){
       res.json({
-        confirmation: 'success',
-        user: null
+        confirmation: 'fail',
+        message: err.message
       })
       return
-    }
-
-    jwt.verify(req.session.token, process.env.TOKEN_SECRET, function(err, decoded){
-      if(err){
-        req.session.reset()
-        res.json({
-          confirmation: 'success',
-          user: null
-        })
-        return
-      }
-      Profile.findById(decoded.id, false)
-      .then(function(result){
-        res.json({
-          confirmation: 'success',
-          user: result
-        })
-        return
-      })
-      .catch(function(err){
-        res.json({
-          confirmation: 'fail',
-          message: err.message
-        })
-        return
-      })
     })
   }
 
@@ -87,26 +63,11 @@ router.post('/:action', function(req, res, next){
   }
 
   if(action=='login'){
-    console.log(JSON.stringify(req.body))
-    Profile.find({email: req.body.email}, true)
-    .then(function(results){
-      if(results.length==0){
-        throw new Error('No user found')
-        return
-      }
-      var profile = results[0]
-      
-      var isPasswordCorrect = bcrypt.compareSync(req.body.password, profile.password)
-      if(isPasswordCorrect==false){
-        throw new Error('Wrong password')
-        return
-      }
-      var token = jwt.sign({id: profile.id}, process.env.TOKEN_SECRET, {expiresIn: 4000})
-      req.session.token = token
-
+    Account.login(req)
+    .then(function(result){
       res.json({
         confirmation: 'success',
-        user: profile.summary()
+        user: result
       })
       return
     })

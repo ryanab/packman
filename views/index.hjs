@@ -60,7 +60,8 @@
                             <li><a href="#clients"><i class="fa fa-puzzle-piece"></i> Clients</a></li>
                             <li><a href="#about"><i class="fa fa-info"></i> About</a></li>
                             <li><a href="#contact"><i class="fa fa-envelope"></i> Contact</a></li>
-                            <li><a href="#login"><i class="fa fa-lock"></i> Log In</a></li>
+                            <li><a href="/login"><i class="fa fa-lock"></i> Log In</a></li>
+                            <li><a href="/register"><i class="fa fa-sign-in"></i> Register</a></li>
                             </ul>
         </div>
       </div>
@@ -324,25 +325,6 @@
 
 <!-- Conatct Section End-->
 
-<!--Login Section -->
-
-<section id="login">
-  <div>
-    <form action="/account/login" method="post">
-      <div class="form-group">
-        <label for="loginEmail">Email:</label>
-        <input id="loginEmail" class ="form-control" type="text" name="email" />
-      </div>
-      <div>
-        <label for="loginPassword">Password:</label>
-        <input id="loginPassword" class ="form-control" type="password" name="password" />
-      </div>
-      <button class="btn btn-primary" type="submit">Login</button>
-    </form>
-  </div>
-</section>
-
-<!-- Login Section end -->
 
     <div id="copyright">
     <div class="container">
