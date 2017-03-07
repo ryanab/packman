@@ -1,8 +1,11 @@
 var gulp = require('gulp')
 var to5 = require('gulp-6to5')
 var gp_concat = require('gulp-concat')
+var gp_rename = require('gulp-rename')
+var gp_uglify = require('gulp-uglify')
 var minifyCSS = require('gulp-minify-css')
 var autoprefixer = require('gulp-autoprefixer')
+
 
 gulp.task('es6-es5', function(){
   gulp.src(['./src/serverapp.js',
@@ -31,19 +34,29 @@ gulp.task('css', function(){
   .pipe(gp_concat('style.min.css'))
   .pipe(gulp.dest('./public/build/css'))
 })
-// gulp.task('js', function(){
-//   return gulp.src([
-      
-//   ])
-//   .pipe(gp_concat('gulp_concat.js'))
-//   .pipe(gulp.dest('./public/min'))
-//   .pipe(gp_rename('vendor.min.js'))
-//   .pipe(gp_uglify())
-//   .pipe(gulp.dest('./public/build/js'))
-// })
+gulp.task('js', function(){
+  return gulp.src([
+    "./public/assets/global/plugins/jquery.min.js",
+    "./public/assets/global/plugins/bootstrap/js/bootstrap.min.js",
+    "./public/assets/global/plugins/js.cookie.min.js",
+    "./public/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
+    "./public/assets/global/plugins/jquery.blockui.min.js",
+    "./public/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js",
+    "./public/assets/global/scripts/app.min.js",
+    "./public/assets/layouts/layout3/scripts/layout.min.js",
+    "./public/assets/layouts/layout3/scripts/demo.min.js",
+    "./public/assets/layouts/global/scripts/quick-sidebar.min.js",
+    "./public/assets/layouts/global/scripts/quick-nav.min.js"
+  ])
+  .pipe(gp_concat('gulp_concat.js'))
+  .pipe(gulp.dest('./public/min'))
+  .pipe(gp_rename('vendor.min.js'))
+  .pipe(gp_uglify())
+  .pipe(gulp.dest('./public/build/js'))
+})
 
-// gulp.task('watch', function(){
-//   gulp.watch(['./src/serverapp.js', './src/*/**.js', './src/*/*/**.js'], ['es6-es5'])
-// })
+gulp.task('watch', function(){
+  gulp.watch(['./src/serverapp.js', './src/*/**.js', './src/*/*/**.js'], ['es6-es5'])
+})
 
-// gulp.task('default', ['es6-es5', 'css', 'js', 'watch'], function(){})
+gulp.task('default', ['es6-es5', 'css', 'js', 'watch'], function(){})
