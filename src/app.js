@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { Landing, Home, ProfileInfo } from './components/layout'
+import { Landing, Home, AccountInfo } from './components/layout'
 import { Orders, Order } from './components/containers'
 import store from './stores'
 import { Provider } from 'react-redux'
@@ -18,7 +18,7 @@ class App extends Component{
             <Route path="/order/:id" component={Order} />
             <Route path="/settings" component={Orders} />
           </Route>
-          <Route path="/account" component={ProfileInfo} />
+          <Route path ="/app/account" component={AccountInfo}/>
         </Router>
       </Provider>
     )

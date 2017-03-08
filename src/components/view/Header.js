@@ -229,7 +229,7 @@ export default (props) => {
                         </a>
                         <ul className="dropdown-menu dropdown-menu-default">
                             <li>
-                                <Link to="/account">
+                                <Link to="/app/account">
                                     <i className="icon-user"></i> Account 
                                 </Link>
                             </li>

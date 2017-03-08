@@ -35,6 +35,23 @@ import { APIManager } from '../utils'
       })
   }
 
+  const putRequest = (path, params, actionType) => {
+    return (dispatch) => 
+      APIManager.put(path, params)
+      .then(response => {
+        const payload = response.data || response.user
+        dispatch({
+          type: actionType,
+          payload: payload,
+          params: params
+        })
+        return response
+      })
+      .catch(err => {
+        throw err        
+      })
+  }
+
 export default {
 
   login: (credentials) => {
@@ -64,6 +81,12 @@ export default {
   getNonpackedOrders: (params) => {
     return (dispatch) => {
       return dispatch(getRequest('/api/order', params, constants.ORDERS_RECEIVED))
+    }
+  },
+
+  updateProfile: (id, params) => {
+    return (dispatch) => {
+      return dispatch(putRequest('/api/profile/'+id, params, constants.CURRENT_USER_RECEIVED))
     }
   }
 }

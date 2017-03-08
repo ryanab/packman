@@ -93,7 +93,36 @@ var express = require('express');
         })    
     })
 
-
+    router.put('/:resource/:id', function(req, res, next){
+        var resource = req.params.resource
+        var controller = controllers[resource]
+        var id = req.params.id
+        
+        if(controller==null){
+            res.json({
+                confirmation: 'fail',
+                message: 'Resource not found'
+            })
+            return
+        }
+        
+        controller.update(id, req.body, false)
+        .then(function(result){
+            res.json({
+                confirmation: 'success',
+                data: result
+            })
+            return
+        })
+        .catch(function(err){
+            console.log(err)
+            res.json({
+                confirmation: 'fail',
+                error: err.message
+            })
+            return
+        })
+    })
 
     module.exports = router;
 

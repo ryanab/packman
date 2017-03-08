@@ -63,7 +63,7 @@ router.get('/app', function(req, res, next){
 	})
 	.catch(function(err){
 		console.log('NOT LOGGED IN: ' + err.message)
-	  return res.redirect('/')
+	  return res.redirect('/login')
 	})  
 })
 

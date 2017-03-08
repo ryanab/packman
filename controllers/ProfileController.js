@@ -57,5 +57,21 @@ module.exports = {
         resolve(profile.summary())
       })
     })
+  },
+
+  update: function(id, params, isRaw){
+    return new Promise(function(resolve, reject){
+      Profile.findByIdAndUpdate(id, params, {new: true}, function(err, profile){
+        if(err){
+          reject(err)
+          return
+        }  
+        if(isRaw){
+          resolve(profile)
+          return
+        }
+        resolve(profile.summary())
+      })
+    })
   }
 }

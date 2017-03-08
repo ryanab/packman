@@ -1,9 +1,9 @@
 import Home from './Home'
 import Landing from './Landing'
-import ProfileInfo from './ProfileInfo'
+import AccountInfo from './AccountInfo'
 
 export {
   Home,
   Landing,
-  ProfileInfo
+  AccountInfo
 }
