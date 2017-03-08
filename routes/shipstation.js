@@ -6,9 +6,15 @@ var controllers = require('../controllers')
 router.post('/order/:account', function(req,res,next){
   //additionally need to perform some type of hashing on mongo id 
   var orderUrl = req.body.resource_url
+  //right now everythign is set by an individual account, later this will move to a company model to allow multiple users to access same API Keys
   var account = req.params.account
-
-  superagent
+  var keys = {}
+  controllers.profile.findById(account)
+  .then(function(result){
+    keys.shipstationAPIKey = result.shipstationAPIKey
+    keys.shipstationAPISecret = result.shipstationAPISecret
+    return superagent
+  })
   .get(orderUrl)
   .set('Accept', 'application/json')
   .auth(process.env.SHIPSTATION_API_KEY, process.env.SHIPSTATION_API_SECRET)
@@ -17,7 +23,7 @@ router.post('/order/:account', function(req,res,next){
       console.log(err)
       return
     }
-    //this must be moved to shipstation controller (this logis should not take place in route)
+    //this must be moved to shipstation controller (this logic should not take place in route)
     var ordersArray = response.body.orders
     ordersArray.forEach(function(order, i){
       order.items.forEach(function(order, i){
