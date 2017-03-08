@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 export default (props) => {
   return (
@@ -228,8 +229,9 @@ export default (props) => {
                         </a>
                         <ul className="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="page_user_profile_1.html">
-                                    <i className="icon-user"></i> My Profile </a>
+                                <Link to="/account">
+                                    <i className="icon-user"></i> Account 
+                                </Link>
                             </li>
                             <li>
                                 <a href="app_calendar.html">
