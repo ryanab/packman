@@ -97,7 +97,22 @@ router.post('/:page', function(req, res, next) {
       console.log(err)       
     })
   }
-  
+
+  if(page=='register'){
+    AccountController.register(req)
+    .then(function(result){
+      console.log(JSON.stringify(result))
+      if(result!=null){
+        res.redirect('/app')
+        return
+      }
+    })
+    //will render login/reg templates with errors
+    .catch(function(err){
+      console.log(err)       
+    })
+  }
+
 });
 
 

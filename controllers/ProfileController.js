@@ -41,7 +41,7 @@ module.exports = {
   
   create: function(params, isRaw){
     return new Promise(function(resolve, reject){
-      
+      console.log(JSON.stringify(params))
       if(params['password'])
         params['password'] = bcrypt.hashSync(params['password'], 10)
       

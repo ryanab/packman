@@ -50,5 +50,23 @@ module.exports = {
         reject(err)
       })
     })
+  },
+
+  register: function(req){
+    return new Promise(function(resolve, reject){
+      Profile.create(req.body, false)
+      .then(function(result){
+        var token = jwt.sign({id: result.id}, process.env.TOKEN_SECRET, {expiresIn: 4000})
+        req.session.token = token
+        var returnObj = {
+          user: result,
+          token: token
+        }
+        resolve(returnObj) //may have to deal with token for auth requests later
+      })
+      .catch(function(err){
+        reject(err)  
+      })
+    })
   }
 }

@@ -41,15 +41,12 @@ router.post('/:action', function(req, res, next){
   var action = req.params.action
 
   if(action=='register'){
-    Profile.create(req.body, false)
+    Account.register(req)
     .then(function(result){
-      var token = jwt.sign({id: result.id}, process.env.TOKEN_SECRET, {expiresIn: 4000})
-      req.session.token = token
-
       res.json({
         confirmation: 'success',
-        user: result,
-        token: token //will use later for authenticated requests
+        user: result.user,
+        token: result.token //will use later for authenticated requests
       })
       return
     })
