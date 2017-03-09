@@ -94,7 +94,8 @@ router.post('/:page', function(req, res, next) {
     })
     //will render login/reg templates with errors
     .catch(function(err){
-      console.log(err)       
+      console.log(err)
+      res.redirect('/login')       
     })
   }
 

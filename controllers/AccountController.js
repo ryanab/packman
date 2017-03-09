@@ -47,6 +47,7 @@ module.exports = {
         resolve(profile.summary())
       })
       .catch(function(err){
+        console.log('We have all the rejects here: ' + err.message)
         reject(err)
       })
     })
