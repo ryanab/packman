@@ -27,9 +27,7 @@ export default (props) => {
                         <div className="col-md-3 col-sm-6 col-xs-12 footer-block">
                             <h2>Follow Us On</h2>
                             <ul className="social-icons">
-                                <li>
-                                    <a href="#" data-original-title="rss" className="rss"></a>
-                                </li>
+
                                 <li>
                                     <a href="#" data-original-title="facebook" className="facebook"></a>
                                 </li>
@@ -37,16 +35,10 @@ export default (props) => {
                                     <a href="#" data-original-title="twitter" className="twitter"></a>
                                 </li>
                                 <li>
-                                    <a href="#" data-original-title="googleplus" className="googleplus"></a>
-                                </li>
-                                <li>
                                     <a href="#" data-original-title="linkedin" className="linkedin"></a>
                                 </li>
                                 <li>
                                     <a href="#" data-original-title="youtube" className="youtube"></a>
-                                </li>
-                                <li>
-                                    <a href="#" data-original-title="vimeo" className="vimeo"></a>
                                 </li>
                             </ul>
                         </div>
@@ -59,16 +51,6 @@ export default (props) => {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className="page-footer">
-                <div className="container"> 2016 &copy; Metronic Theme By
-                    <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
-                    <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
-                </div>
-            </div>
-            <div className="scroll-to-top">
-                <i className="icon-arrow-up"></i>
             </div>
         </div>
     </div>

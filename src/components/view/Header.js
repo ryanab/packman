@@ -7,7 +7,7 @@ export default (props) => {
         <div className="container">
             <div className="page-logo">
                 <a href="index.html">
-                    <img src="../assets/layouts/layout3/img/logo-default.jpg" alt="logo" className="logo-default"/>
+                    <img src="/assets/layouts/layout3/img/logo-default.jpg" alt="logo" className="logo-default"/>
                 </a>
             </div>
             <a href="#" className="menu-toggler"></a>
@@ -224,7 +224,7 @@ export default (props) => {
                     </li>
                     <li className="dropdown dropdown-user dropdown-dark">
                         <a href="#" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" className="img-circle" src="../assets/layouts/layout3/img/avatar9.jpg" />
+                            <img alt="" className="img-circle" src="/assets/layouts/layout3/img/avatar9.jpg" />
                             <span className="username username-hide-mobile">Nick</span>
                         </a>
                         <ul className="dropdown-menu dropdown-menu-default">

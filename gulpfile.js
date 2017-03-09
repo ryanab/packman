@@ -18,12 +18,12 @@ gulp.task('es6-es5', function(){
 
 gulp.task('css', function(){
   return gulp.src([
+    "./public/assets/global/css/google-fonts.css",
     "./public/assets/global/plugins/font-awesome/css/font-awesome.min.css",
-    ".public/assets/global/plugins/simple-line-icons/simple-line-icons.min.css",
+    "./public/assets/global/plugins/simple-line-icons/simple-line-icons.min.css",
     "./public/assets/global/plugins/bootstrap/css/bootstrap.min.css",
     "./public/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css",
     "./public/assets/global/css/components.min.css",
-    "./public/assets/global/css/google-fonts.css",
     "./public/assets/global/css/plugins.min.css",
     "./public/assets/layouts/layout3/css/layout.min.css",
     "./public/assets/layouts/layout3/css/themes/default.min.css",

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "NODE_ENV=production webpack && gulp",
+    "build": "NODE_ENV=production webpack && gulp default",
     "start": "node ./bin/www",
     "postinstall": "npm run build"
   },
