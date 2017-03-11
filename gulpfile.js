@@ -60,3 +60,5 @@ gulp.task('watch', function(){
 })
 
 gulp.task('default', ['es6-es5', 'css', 'js', 'watch'], function(){})
+
+gulp.task('build', ['es6-es5', 'css', 'js'], function(){})
