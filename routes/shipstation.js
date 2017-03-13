@@ -12,12 +12,14 @@ router.post('/order/:account', function(req,res,next){
   .then(function(result){
     keys.shipstationAPIKey = result.shipstationAPIKey
     keys.shipstationAPISecret = result.shipstationAPISecret
+    console.log('superagent')
     return superagent
   })
   .get(orderUrl)
   .set('Accept', 'application/json')
   .auth(keys.SHIPSTATION_API_KEY, keys.SHIPSTATION_API_SECRET)
   .end(function(err, response){
+    console.log('get completed')
     console.log(JSON,stringify('Response: ' + response))
     if(err){
       console.log(err)
