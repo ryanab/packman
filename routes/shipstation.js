@@ -9,6 +9,7 @@ router.post('/order/:account', function(req,res,next){
   var account = req.params.account
   controllers.profile.findById(account)
   .then(function(result){
+    console.log('getting')
     var shipstationAPIKey = result.shipstationAPIKey
     var shipstationAPISecret = result.shipstationAPISecret
     superagent
