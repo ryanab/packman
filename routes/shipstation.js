@@ -16,8 +16,9 @@ router.post('/order/:account', function(req,res,next){
   })
   .get(orderUrl)
   .set('Accept', 'application/json')
-  .auth(process.env.SHIPSTATION_API_KEY, process.env.SHIPSTATION_API_SECRET)
+  .auth(keys.SHIPSTATION_API_KEY, keys.SHIPSTATION_API_SECRET)
   .end(function(err, response){
+    console.log(JSON,stringify('Response: ' + response))
     if(err){
       console.log(err)
       return
