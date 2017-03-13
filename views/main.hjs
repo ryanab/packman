@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Metronic Admin Theme #3 | Fixed Mega Menu</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="Preview page of Metronic Admin Theme #3 for " name="description" />
-        <meta content="" name="author" />
-        <link rel="stylesheet" href="/build/css/style.min.css" type="text/css" />
-        <link rel="shortcut icon" href="favicon.ico" /> 
-      </head>
+  <head>
+    <meta charset="utf-8" />
+    <title>Metronic Admin Theme #3 | Fixed Mega Menu</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Preview page of Metronic Admin Theme #3 for " name="description" />
+    <meta content="" name="author" />
+    <link rel="stylesheet" href="/build/css/style.min.css" type="text/css" />
+    <link rel="shortcut icon" href="favicon.ico" /> 
+  </head>
   <body class="page-container-bg-solid page-header-menu-fixed">
     <div id="root">{{{ react }}}</div>
     <script type="text/javascript">window.__PRELOADED_STATE__ = {{{preloadedState}}}</script>

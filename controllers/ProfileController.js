@@ -30,6 +30,7 @@ module.exports = {
           reject(err)
           return
         }
+
         if(isRaw){
            resolve(profile)
            return

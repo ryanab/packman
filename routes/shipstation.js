@@ -4,9 +4,8 @@ var superagent = require('superagent')
 var controllers = require('../controllers')
 
 router.post('/order/:account', function(req,res,next){
-  //additionally need to perform some type of hashing on mongo id 
+  //may need to perform some type of hashing on mongo id instead og using that as our webhook
   var orderUrl = req.body.resource_url
-  //right now everythign is set by an individual account, later this will move to a company model to allow multiple users to access same API Keys
   var account = req.params.account
   var keys = {}
   controllers.profile.findById(account)
