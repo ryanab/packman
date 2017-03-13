@@ -7,38 +7,36 @@ router.post('/order/:account', function(req,res,next){
   //may need to perform some type of hashing on mongo id instead og using that as our webhook
   var orderUrl = req.body.resource_url
   var account = req.params.account
-  var keys = {}
   controllers.profile.findById(account)
   .then(function(result){
-    keys.shipstationAPIKey = result.shipstationAPIKey
-    keys.shipstationAPISecret = result.shipstationAPISecret
-    console.log('superagent')
-    return superagent
-  })
-  .get(orderUrl)
-  .set('Accept', 'application/json')
-  .auth(keys.SHIPSTATION_API_KEY, keys.SHIPSTATION_API_SECRET)
-  .end(function(err, response){
-    console.log('get completed')
-    console.log(JSON,stringify('Response: ' + response))
-    if(err){
-      console.log(err)
-      return
-    }
-    //this must be moved to shipstation controller (this logic should not take place in route)
-    var ordersArray = response.body.orders
-    ordersArray.forEach(function(order, i){
-      order.items.forEach(function(order, i){
-        item.packed = false
-      })
-      order.account = account
-      order.source = 'ShipStation'
-      controllers.order.create(order)
-      .then(function(response){
-        //send this to firebase or socket
-      })
-      .catch(function(err){
+    var shipstationAPIKey = result.shipstationAPIKey
+    var shipstationAPISecret = result.shipstationAPISecret
+    superagent
+    .get(orderUrl)
+    .set('Accept', 'application/json')
+    .auth(shipstationAPIKey, shipstationAPISecret)
+    .end(function(err, response){
+      console.log('get completed')
+      console.log(JSON,stringify('Response: ' + response))
+      if(err){
         console.log(err)
+        return
+      }
+      //this must be moved to shipstation controller (this logic should not take place in route)
+      var ordersArray = response.body.orders
+      ordersArray.forEach(function(order, i){
+        order.items.forEach(function(order, i){
+          item.packed = false
+        })
+        order.account = account
+        order.source = 'ShipStation'
+        controllers.order.create(order)
+        .then(function(response){
+          //send this to firebase or socket
+        })
+        .catch(function(err){
+          console.log(err)
+        })
       })
     })
   })
