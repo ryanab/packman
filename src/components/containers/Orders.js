@@ -35,7 +35,7 @@ class Orders extends Component{
         if(order.orderNumber==null || order.orderNumber=='')
           return
         
-          browserHistory.push('/order/' + order.id)
+          browserHistory.push('/app/order/' + order.id)
       }
     })
   }

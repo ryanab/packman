@@ -15,8 +15,7 @@ class App extends Component{
         <Router history={browserHistory}>
           <Route path ="/app" component={Home} >
             <IndexRoute component={Orders} />
-            <Route path="/order/:id" component={Order} />
-            <Route path="/settings" component={Orders} />
+            <Route path="/app/order/:id" component={Order} />
           </Route>
           <Route path ="/app/account" component={AccountInfo}/>
         </Router>

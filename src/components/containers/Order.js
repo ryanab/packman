@@ -6,37 +6,65 @@ import { OrderItem } from '../view'
 
 class Order extends Component {
 
-  componentDidMount(){
-  
+  constructor(){
+    super()
+    this.state = {
+      packed: [],
+      notPacked: [],
+      scanned: ''
+    }
   }
 
-  barcodeScanned(event){
-    let updated = event.target.value
-    this.setState({
-      scanned: updated
-    })
-  }
-  
-  componentDidUpdate(){
-    let barcode = this.state.scanned
-    this.state.notPacked.forEach((item, i) => {
-      if(item.sku == barcode){
-        if(item.sku==null || item.sku=='')
-          return
-        item['packed'] = true
+  componentDidMount(){
+    let order = this.props.orders[this.props.params.id]
+    let packed = []
+    let notPacked = []
+
+    order.items.forEach((order, i)=> {
+      if(order.packed){
+        packed.push(order)
+      }else{
+        notPacked.push(order)
       }
+    })
+
+    this.setState({
+      packed,
+      notPacked
     })
   }
 
   componentWillUnmount(){
     this.refs.barcodeInput = ""
   }
-    
-    render(){ 
 
+  barcodeScanned(event){
+    event.preventDefault()
+    this.setState({
+      scanned: event.target.value
+    })
+  }
 
+  componentDidUpdate(){
+    this.state.notPacked.forEach((item, i) => {
+      if(item.sku==this.state.scanned){
+        let updatedNotPacked = Object.assign([], this.state.notPacked)
+        let updatedPacked = Object.assign([], this.state.notPacked)
 
-        return (
+        updatedPacked.unshift(updatedNotPacked.splice(i, 1))
+        console.log('updated: ' + JSON.stringify(updatedPacked))
+        console.log('updated: ' + JSON.stringify(updatedNotPacked))
+        this.refs.barcodeInput = ""
+        this.setState({
+          packed: updatedPacked,
+          notPacked: updatedNotPacked
+        })    
+      }
+    })
+  }
+
+  render(){ 
+    return (
             <div>
               <div className="row">
                 <input ref="barcodeInput" onChange={this.barcodeScanned.bind(this)} className="form-control" style={{marginBottom: 15}} placeholder="Please enter or scan a barcode"/>
