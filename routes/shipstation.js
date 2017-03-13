@@ -18,7 +18,7 @@ router.post('/order/:account', function(req,res,next){
     .auth(shipstationAPIKey, shipstationAPISecret)
     .end(function(err, response){
       console.log('get completed')
-      console.log(JSON,stringify('Response: ' + response))
+      console.log(JSON.stringify('Response: ' + response))
       if(err){
         console.log(err)
         return
