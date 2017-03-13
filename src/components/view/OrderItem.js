@@ -8,15 +8,13 @@ export default (props) => {
                     <i className="fa fa-angle-left"></i>
                 </a>
             </div>
-            <div className="list-datetime bold uppercase font-green"> 8 Nov, 2015 </div>
             <div className="list-item-content">
-                <h3 className="uppercase">
+                <h3 className="uppercase bold uppercase font-green">
                     <span> {props.item.sku}</span>
-                </h3>
-                <br />
+                </h3> < br />
                 <p>Name: {props.item.name}</p>
                 <p>Quantity: {props.item.quantity}</p>
             </div>
-        </li>        
+        </li>   
     )
 }

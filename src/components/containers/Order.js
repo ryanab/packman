@@ -11,7 +11,7 @@ class Order extends Component {
     this.state = {
       packed: [],
       notPacked: [],
-      scanned: ''
+      scanned:''
     }
   }
 
@@ -49,21 +49,26 @@ class Order extends Component {
     this.state.notPacked.forEach((item, i) => {
       if(item.sku==this.state.scanned){
         let updatedNotPacked = Object.assign([], this.state.notPacked)
-        let updatedPacked = Object.assign([], this.state.notPacked)
+        let updatedPacked = Object.assign([], this.state.packed)
+        
+        let scanned = updatedNotPacked[i]
+        updatedNotPacked.splice(i, 1)
+        updatedPacked.unshift(scanned)
 
-        updatedPacked.unshift(updatedNotPacked.splice(i, 1))
         console.log('updated: ' + JSON.stringify(updatedPacked))
         console.log('updated: ' + JSON.stringify(updatedNotPacked))
         this.refs.barcodeInput = ""
         this.setState({
+          scanned: '',
           packed: updatedPacked,
           notPacked: updatedNotPacked
-        })    
+          })
       }
     })
   }
 
-  render(){ 
+  render(){
+
     return (
             <div>
               <div className="row">
@@ -82,7 +87,7 @@ class Order extends Component {
                                 </div>
                                 <div className="mt-list-container list-news">
                                 {
-                                  (this.state.notPacked.length==0) ? <h4>Nothing here</h4>
+                                  (this.state.notPacked.length==0) ? <h4>All Packed</h4>
                                   :
                                   <ul>
                                   {
