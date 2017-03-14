@@ -76,12 +76,12 @@ class Order extends Component {
         <div className="row">
           <div className="col-lg-6">
             { (this.state.notPacked.length==0) ? 
-              <h4>All Packed</h4> : <OrderItemList title={'Not Packed'} list={this.state.notPacked}/>
+              <h4>All Packed</h4> : <OrderItemList{...this.state.notPacked}/>
             }
           </div>
           <div className="col-lg-6">
             { (this.state.packed.length==0) ? 
-              <h4>Nothing Here yet, get packing</h4> : <OrderItemList title={'Packed'} list={this.state.packed}/>
+              <h4>Nothing Here yet, get packing</h4> : <OrderItemList{...this.state.packed}/>
             }
           </div>
         </div>
