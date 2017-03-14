@@ -41,7 +41,7 @@ class Orders extends Component{
   }
 
   componentWillUnmount(){
-    this.refs.barcodeInput = ""
+    this.refs.barcodeInput.value = ""
   }
 
   render(){ 
