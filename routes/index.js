@@ -12,6 +12,7 @@ var __BUILD_DIR__ = '../public/build' //may need to change on heorku
 var serverapp = require(__BUILD_DIR__+'/es5/serverapp')
 var store = require(__BUILD_DIR__+'/es5/stores/index')
 var Home = require(__BUILD_DIR__+'/es5/components/layout/Home')
+var Orders = require(__BUILD_DIR__+'/es5/components/containers/Orders')
 
 var matchRoutes = function(req, routes){
 	return new Promise(function(resolve, reject){
@@ -50,7 +51,7 @@ router.get('/app', function(req, res, next){
       component: serverapp,
       initial: initialStore,
       indexRoute: {
-        component: Home
+        component: Orders
       }
     }
     return matchRoutes(req, routes)
