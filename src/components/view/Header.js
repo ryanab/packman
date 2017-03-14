@@ -7,7 +7,7 @@ export default (props) => {
         <div className="container">
             <div className="page-logo">
                 <a href="index.html">
-                    <img src="/assets/layouts/layout3/img/logo-default.jpg" alt="logo" className="logo-default"/>
+                    <img src="/assets/global/img/duck_packer.png" alt="logo" className="logo-default" width={225} style={{marginTop: 15}}/>
                 </a>
             </div>
             <a href="#" className="menu-toggler"></a>

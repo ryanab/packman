@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/build/css/style.min.css" type="text/css" />
     <link rel="shortcut icon" href="favicon.ico" /> 
   </head>
-  <body class="page-container-bg-solid page-header-menu-fixed">
+  <body class="page-container-bg-solid page-header-top-fixed">
     <div id="root">{{{ react }}}</div>
     <script type="text/javascript">window.__PRELOADED_STATE__ = {{{preloadedState}}}</script>
     <script type="text/javascript" src="/build/js/vendor.min.js"></script>
