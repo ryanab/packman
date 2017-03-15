@@ -7,18 +7,53 @@ router.post('/order/:account', function(req,res,next){
   //may need to perform some type of hashing on mongo id instead og using that as our webhook
   var orderUrl = req.body.resource_url
   var account = req.params.account
+    controllers.profile.findById(account)
+    .then(function(result){
+      var shipstationAPIKey = result.shipstationAPIKey
+      var shipstationAPISecret = result.shipstationAPISecret
+      superagent
+      .get(orderUrl)
+      .set('Accept', 'application/json')
+      .auth(shipstationAPIKey, shipstationAPISecret)
+      .end(function(err, response){
+        if(err){
+          console.log(err)
+          return
+        }
+        //this must be moved to shipstation controller (this logic should not take place in route)
+        var ordersArray = response.body.orders
+        ordersArray.forEach(function(order, i){
+          order.items.forEach(function(order, i){
+            item.packed = false
+          })
+          order.account = account
+          order.source = 'ShipStation'
+          controllers.order.create(order)
+          .then(function(response){
+            //send this to firebase or socket
+          })
+          .catch(function(err){
+            console.log(err)
+          })
+        })
+      })
+    })
+  return
+})
+
+router.get('/order/:account', function(req, res, next){
+  //Account passed in as work around until we set up authenticated requests
+  var account = req.params.account
   controllers.profile.findById(account)
   .then(function(result){
     console.log('getting')
     var shipstationAPIKey = result.shipstationAPIKey
     var shipstationAPISecret = result.shipstationAPISecret
     superagent
-    .get(orderUrl)
+    .get('https://ssapi.shipstation.com/orders/')
     .set('Accept', 'application/json')
     .auth(shipstationAPIKey, shipstationAPISecret)
     .end(function(err, response){
-      console.log('get completed')
-      console.log(JSON.stringify('Response: ' + response))
       if(err){
         console.log(err)
         return
@@ -32,35 +67,21 @@ router.post('/order/:account', function(req,res,next){
         order.account = account
         order.source = 'ShipStation'
         controllers.order.create(order)
-        .then(function(response){
-          //send this to firebase or socket
+        .then(function(result){
+          res.json({
+            confirmation: 'success',
+            data: result
+          })
+          return
         })
         .catch(function(err){
-          console.log(err)
+          res.json({
+            confirmation: 'fail',
+            message: 'error retrieving orders from shipstation'
+          })
+          return
         })
       })
-    })
-  })
-  return
-})
-
-router.get('/order', function(req, res, next){
-  //First get working with my Shipstation ENV API keys; later the keys will have to be pulled from users accounr
-  superagent
-  .get('https://ssapi.shipstation.com/orders')
-  .set('Accept', 'application/json')
-  .auth(process.env.SHIPSTATION_API_KEY, process.env.SHIPSTATION_API_SECRET)
-  .end(function(err, response){
-    if(err){
-      res.json({
-        confirmation: 'fail',
-        message: err.message
-      })
-      return
-    }
-    res.json({
-      confirmation: 'success',
-      data: response.body
     })
   })
 })
