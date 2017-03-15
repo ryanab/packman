@@ -13430,6 +13430,18 @@ var Account = function (_Component) {
           _react2.default.createElement(
             'label',
             null,
+            'Name:'
+          ),
+          _react2.default.createElement('input', { onChange: this.updateProfile.bind(this), id: 'name', type: 'text', className: 'form-control', placeholder: this.props.user.name }),
+          ' ',
+          _react2.default.createElement('br', null)
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'form-group' },
+          _react2.default.createElement(
+            'label',
+            null,
             'Email Address:'
           ),
           _react2.default.createElement('input', { onChange: this.updateProfile.bind(this), id: 'email', type: 'text', className: 'form-control', placeholder: this.props.user.email }),
@@ -14286,364 +14298,180 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(22);
 
+var _reactRedux = __webpack_require__(30);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (props) {
-    return _react2.default.createElement(
-        'div',
-        { className: 'page-header-top' },
-        _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Header = function (_Component) {
+    _inherits(Header, _Component);
+
+    function Header() {
+        _classCallCheck(this, Header);
+
+        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+    }
+
+    _createClass(Header, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
                 'div',
-                { className: 'page-logo' },
+                { className: 'page-header-top' },
                 _react2.default.createElement(
-                    'a',
-                    { href: 'index.html' },
-                    _react2.default.createElement('img', { src: '/assets/global/img/duck_packer.png', alt: 'logo', className: 'logo-default', width: 225, style: { marginTop: 15 } })
-                )
-            ),
-            _react2.default.createElement('a', { href: '#', className: 'menu-toggler' }),
-            _react2.default.createElement(
-                'div',
-                { className: 'top-menu' },
-                _react2.default.createElement(
-                    'ul',
-                    { className: 'nav navbar-nav pull-right' },
+                    'div',
+                    { className: 'container' },
                     _react2.default.createElement(
-                        'li',
-                        { className: 'dropdown dropdown-extended dropdown-notification dropdown-dark', id: 'header_notification_bar' },
+                        'div',
+                        { className: 'page-logo' },
                         _react2.default.createElement(
                             'a',
-                            { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', 'data-hover': 'dropdown', 'data-close-others': 'true' },
-                            _react2.default.createElement('i', { className: 'icon-bell' }),
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'badge badge-default' },
-                                '7'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'ul',
-                            { className: 'dropdown-menu' },
-                            _react2.default.createElement(
-                                'li',
-                                { className: 'external' },
-                                _react2.default.createElement(
-                                    'h3',
-                                    null,
-                                    'You have',
-                                    _react2.default.createElement(
-                                        'strong',
-                                        null,
-                                        '12 pending'
-                                    ),
-                                    ' tasks'
-                                ),
-                                _react2.default.createElement(
-                                    'a',
-                                    { href: 'app_todo.html' },
-                                    'view all'
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(
-                                    'ul',
-                                    { className: 'dropdown-menu-list scroller', style: { height: '250px' }, 'data-handle-color': '#637283' },
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'time' },
-                                                'just now'
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'details' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'label label-sm label-icon label-success' },
-                                                    _react2.default.createElement('i', { className: 'fa fa-plus' })
-                                                ),
-                                                ' New user registered. '
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'time' },
-                                                '3 mins'
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'details' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'label label-sm label-icon label-danger' },
-                                                    _react2.default.createElement('i', { className: 'fa fa-bolt' })
-                                                ),
-                                                ' Server #12 overloaded. '
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'time' },
-                                                '10 mins'
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'details' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'label label-sm label-icon label-warning' },
-                                                    _react2.default.createElement('i', { className: 'fa fa-bell-o' })
-                                                ),
-                                                ' Server #2 not responding. '
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'time' },
-                                                '14 hrs'
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'details' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'label label-sm label-icon label-info' },
-                                                    _react2.default.createElement('i', { className: 'fa fa-bullhorn' })
-                                                ),
-                                                ' Application error. '
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'time' },
-                                                '2 days'
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'details' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'label label-sm label-icon label-danger' },
-                                                    _react2.default.createElement('i', { className: 'fa fa-bolt' })
-                                                ),
-                                                ' Database overloaded 68%. '
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'time' },
-                                                '3 days'
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'details' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'label label-sm label-icon label-danger' },
-                                                    _react2.default.createElement('i', { className: 'fa fa-bolt' })
-                                                ),
-                                                ' A user IP blocked. '
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'time' },
-                                                '4 days'
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'details' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'label label-sm label-icon label-warning' },
-                                                    _react2.default.createElement('i', { className: 'fa fa-bell-o' })
-                                                ),
-                                                ' Storage Server #4 not responding dfdfdfd. '
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'time' },
-                                                '5 days'
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'details' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'label label-sm label-icon label-info' },
-                                                    _react2.default.createElement('i', { className: 'fa fa-bullhorn' })
-                                                ),
-                                                ' System Error. '
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'time' },
-                                                '9 days'
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'details' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'label label-sm label-icon label-danger' },
-                                                    _react2.default.createElement('i', { className: 'fa fa-bolt' })
-                                                ),
-                                                ' Storage server failed. '
-                                            )
-                                        )
-                                    )
-                                )
-                            )
+                            { href: 'index.html' },
+                            _react2.default.createElement('img', { src: '/assets/global/img/duck_packer.png', alt: 'logo', className: 'logo-default', width: 225, style: { marginTop: 15 } })
                         )
                     ),
+                    _react2.default.createElement('a', { href: '#', className: 'menu-toggler' }),
                     _react2.default.createElement(
-                        'li',
-                        { className: 'dropdown dropdown-extended dropdown-tasks dropdown-dark', id: 'header_task_bar' },
-                        _react2.default.createElement(
-                            'a',
-                            { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', 'data-hover': 'dropdown', 'data-close-others': 'true' },
-                            _react2.default.createElement('i', { className: 'icon-calendar' }),
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'badge badge-default' },
-                                '3'
-                            )
-                        ),
+                        'div',
+                        { className: 'top-menu' },
                         _react2.default.createElement(
                             'ul',
-                            { className: 'dropdown-menu extended tasks' },
+                            { className: 'nav navbar-nav pull-right' },
                             _react2.default.createElement(
                                 'li',
-                                { className: 'external' },
+                                { className: 'dropdown dropdown-extended dropdown-notification dropdown-dark', id: 'header_notification_bar' },
                                 _react2.default.createElement(
-                                    'h3',
-                                    null,
-                                    'You have',
+                                    'a',
+                                    { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', 'data-hover': 'dropdown', 'data-close-others': 'true' },
+                                    _react2.default.createElement('i', { className: 'icon-bell', style: { fontSize: 24 } }),
                                     _react2.default.createElement(
-                                        'strong',
-                                        null,
-                                        '12 pending'
-                                    ),
-                                    ' tasks'
+                                        'span',
+                                        { className: 'badge badge-default' },
+                                        '7'
+                                    )
                                 ),
                                 _react2.default.createElement(
-                                    'a',
-                                    { href: 'app_todo_2.html' },
-                                    'view all'
+                                    'ul',
+                                    { className: 'dropdown-menu' },
+                                    _react2.default.createElement(
+                                        'li',
+                                        { className: 'external' },
+                                        _react2.default.createElement(
+                                            'h3',
+                                            null,
+                                            'You have',
+                                            _react2.default.createElement(
+                                                'strong',
+                                                null,
+                                                '12 pending'
+                                            ),
+                                            ' tasks'
+                                        ),
+                                        _react2.default.createElement(
+                                            'a',
+                                            { href: 'app_todo.html' },
+                                            'view all'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'li',
+                                        null,
+                                        _react2.default.createElement(
+                                            'ul',
+                                            { className: 'dropdown-menu-list scroller', style: { height: '250px' }, 'data-handle-color': '#637283' },
+                                            _react2.default.createElement(
+                                                'li',
+                                                null,
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { href: '#' },
+                                                    _react2.default.createElement(
+                                                        'span',
+                                                        { className: 'time' },
+                                                        'just now'
+                                                    ),
+                                                    _react2.default.createElement(
+                                                        'span',
+                                                        { className: 'details' },
+                                                        _react2.default.createElement(
+                                                            'span',
+                                                            { className: 'label label-sm label-icon label-success' },
+                                                            _react2.default.createElement('i', { className: 'fa fa-plus' })
+                                                        ),
+                                                        ' New user registered. '
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
                                 )
                             ),
                             _react2.default.createElement(
                                 'li',
-                                null,
+                                { className: 'droddown dropdown-separator' },
+                                _react2.default.createElement('span', { className: 'separator' })
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'dropdown dropdown-user dropdown-dark' },
+                                _react2.default.createElement(
+                                    'a',
+                                    { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', 'data-hover': 'dropdown', 'data-close-others': 'true' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'username username-hide-mobile', style: { paddingRight: 3 } },
+                                        this.props.user.name
+                                    ),
+                                    _react2.default.createElement('i', { className: 'fa fa-cog', style: { fontSize: 24 } })
+                                ),
                                 _react2.default.createElement(
                                     'ul',
-                                    { className: 'dropdown-menu-list scroller', style: { height: '275px' }, 'data-handle-color': '#637283' },
+                                    { className: 'dropdown-menu dropdown-menu-default' },
+                                    _react2.default.createElement(
+                                        'li',
+                                        null,
+                                        _react2.default.createElement(
+                                            _reactRouter.Link,
+                                            { to: '/app/account' },
+                                            _react2.default.createElement('i', { className: 'icon-user' }),
+                                            ' Account'
+                                        )
+                                    ),
                                     _react2.default.createElement(
                                         'li',
                                         null,
                                         _react2.default.createElement(
                                             'a',
-                                            { href: '#' },
+                                            { href: 'app_calendar.html' },
+                                            _react2.default.createElement('i', { className: 'icon-calendar' }),
+                                            ' My Calendar '
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'li',
+                                        null,
+                                        _react2.default.createElement(
+                                            'a',
+                                            { href: 'app_inbox.html' },
+                                            _react2.default.createElement('i', { className: 'icon-envelope-open' }),
+                                            ' My Inbox',
                                             _react2.default.createElement(
                                                 'span',
-                                                { className: 'task' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'desc' },
-                                                    'New release v1.2 '
-                                                ),
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'percent' },
-                                                    '30%'
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'progress' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { style: { width: '40%' }, className: 'progress-bar progress-bar-success', 'aria-valuenow': '40', 'aria-valuemin': '0', 'aria-valuemax': '100' },
-                                                    _react2.default.createElement(
-                                                        'span',
-                                                        { className: 'sr-only' },
-                                                        '40% Complete'
-                                                    )
-                                                )
+                                                { className: 'badge badge-danger' },
+                                                ' 3 '
                                             )
                                         )
                                     ),
@@ -14652,34 +14480,29 @@ exports.default = function (props) {
                                         null,
                                         _react2.default.createElement(
                                             'a',
-                                            { href: '#' },
+                                            { href: 'app_todo_2.html' },
+                                            _react2.default.createElement('i', { className: 'icon-rocket' }),
+                                            ' My Tasks',
                                             _react2.default.createElement(
                                                 'span',
-                                                { className: 'task' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'desc' },
-                                                    'Application deployment'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'percent' },
-                                                    '65%'
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'progress' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { style: { width: '65%' }, className: 'progress-bar progress-bar-danger', 'aria-valuenow': '65', 'aria-valuemin': '0', 'aria-valuemax': '100' },
-                                                    _react2.default.createElement(
-                                                        'span',
-                                                        { className: 'sr-only' },
-                                                        '65% Complete'
-                                                    )
-                                                )
+                                                { className: 'badge badge-success' },
+                                                ' 7 '
                                             )
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'li',
+                                        { className: 'divider' },
+                                        ' '
+                                    ),
+                                    _react2.default.createElement(
+                                        'li',
+                                        null,
+                                        _react2.default.createElement(
+                                            'a',
+                                            { href: 'page_user_lock_1.html' },
+                                            _react2.default.createElement('i', { className: 'icon-lock' }),
+                                            ' Lock Screen '
                                         )
                                     ),
                                     _react2.default.createElement(
@@ -14687,283 +14510,34 @@ exports.default = function (props) {
                                         null,
                                         _react2.default.createElement(
                                             'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'task' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'desc' },
-                                                    'Mobile app release'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'percent' },
-                                                    '98%'
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'progress' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { style: { width: '98%' }, className: 'progress-bar progress-bar-success', 'aria-valuenow': '98', 'aria-valuemin': '0', 'aria-valuemax': '100' },
-                                                    _react2.default.createElement(
-                                                        'span',
-                                                        { className: 'sr-only' },
-                                                        '98% Complete'
-                                                    )
-                                                )
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'task' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'desc' },
-                                                    'Database migration'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'percent' },
-                                                    '10%'
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'progress' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { style: { width: '10%' }, className: 'progress-bar progress-bar-warning', 'aria-valuenow': '10', 'aria-valuemin': '0', 'aria-valuemax': '100' },
-                                                    _react2.default.createElement(
-                                                        'span',
-                                                        { className: 'sr-only' },
-                                                        '10% Complete'
-                                                    )
-                                                )
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'task' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'desc' },
-                                                    'Web server upgrade'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'percent' },
-                                                    '58%'
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'progress' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { style: { width: '58%' }, className: 'progress-bar progress-bar-info', 'aria-valuenow': '58', 'aria-valuemin': '0', 'aria-valuemax': '100' },
-                                                    _react2.default.createElement(
-                                                        'span',
-                                                        { className: 'sr-only' },
-                                                        '58% Complete'
-                                                    )
-                                                )
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'task' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'desc' },
-                                                    'Mobile development'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'percent' },
-                                                    '85%'
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'progress' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { style: { width: '85%' }, className: 'progress-bar progress-bar-success', 'aria-valuenow': '85', 'aria-valuemin': '0', 'aria-valuemax': '100' },
-                                                    _react2.default.createElement(
-                                                        'span',
-                                                        { className: 'sr-only' },
-                                                        '85% Complete'
-                                                    )
-                                                )
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            'a',
-                                            { href: '#' },
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'task' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'desc' },
-                                                    'New UI release'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'percent' },
-                                                    '38%'
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'span',
-                                                { className: 'progress progress-striped' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { style: { width: '38%' }, className: 'progress-bar progress-bar-important', 'aria-valuenow': '18', 'aria-valuemin': '0', 'aria-valuemax': '100' },
-                                                    _react2.default.createElement(
-                                                        'span',
-                                                        { className: 'sr-only' },
-                                                        '38% Complete'
-                                                    )
-                                                )
-                                            )
+                                            { href: 'page_user_login_1.html' },
+                                            _react2.default.createElement('i', { className: 'icon-key' }),
+                                            ' Log Out '
                                         )
                                     )
-                                )
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        { className: 'droddown dropdown-separator' },
-                        _react2.default.createElement('span', { className: 'separator' })
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        { className: 'dropdown dropdown-user dropdown-dark' },
-                        _react2.default.createElement(
-                            'a',
-                            { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', 'data-hover': 'dropdown', 'data-close-others': 'true' },
-                            _react2.default.createElement('img', { alt: '', className: 'img-circle', src: '/assets/layouts/layout3/img/avatar9.jpg' }),
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'username username-hide-mobile' },
-                                'Nick'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'ul',
-                            { className: 'dropdown-menu dropdown-menu-default' },
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(
-                                    _reactRouter.Link,
-                                    { to: '/app/account' },
-                                    _react2.default.createElement('i', { className: 'icon-user' }),
-                                    ' Account'
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(
-                                    'a',
-                                    { href: 'app_calendar.html' },
-                                    _react2.default.createElement('i', { className: 'icon-calendar' }),
-                                    ' My Calendar '
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(
-                                    'a',
-                                    { href: 'app_inbox.html' },
-                                    _react2.default.createElement('i', { className: 'icon-envelope-open' }),
-                                    ' My Inbox',
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'badge badge-danger' },
-                                        ' 3 '
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(
-                                    'a',
-                                    { href: 'app_todo_2.html' },
-                                    _react2.default.createElement('i', { className: 'icon-rocket' }),
-                                    ' My Tasks',
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'badge badge-success' },
-                                        ' 7 '
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                { className: 'divider' },
-                                ' '
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(
-                                    'a',
-                                    { href: 'page_user_lock_1.html' },
-                                    _react2.default.createElement('i', { className: 'icon-lock' }),
-                                    ' Lock Screen '
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(
-                                    'a',
-                                    { href: 'page_user_login_1.html' },
-                                    _react2.default.createElement('i', { className: 'icon-key' }),
-                                    ' Log Out '
                                 )
                             )
                         )
                     )
                 )
-            )
-        )
-    );
+            );
+        }
+    }]);
+
+    return Header;
+}(_react.Component);
+
+var stateToProps = function stateToProps(state) {
+    return {
+        user: state.account.user
+    };
 };
+
+var dispatchToProps = function dispatchToProps(dispatch) {
+    return {};
+};
+
+exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Header);
 
 /***/ }),
 /* 142 */
@@ -15037,7 +14611,7 @@ exports.default = function (props) {
                 _react2.default.createElement(
                     "div",
                     { className: "input-group" },
-                    _react2.default.createElement("input", { type: "text", className: "form-control", placeholder: "Search", name: "query" }),
+                    _react2.default.createElement("input", { type: "text", className: "form-control", placeholder: "Search By Order #", name: "query" }),
                     _react2.default.createElement(
                         "span",
                         { className: "input-group-btn" },
@@ -15062,7 +14636,7 @@ exports.default = function (props) {
                         _react2.default.createElement(
                             "a",
                             null,
-                            " Home "
+                            " To Pack "
                         ),
                         " "
                     ),
@@ -15073,7 +14647,7 @@ exports.default = function (props) {
                         _react2.default.createElement(
                             "a",
                             null,
-                            " Link 1 "
+                            " All Orders Today "
                         ),
                         " "
                     ),
@@ -15084,18 +14658,7 @@ exports.default = function (props) {
                         _react2.default.createElement(
                             "a",
                             null,
-                            " Link 2 "
-                        ),
-                        " "
-                    ),
-                    _react2.default.createElement(
-                        "li",
-                        null,
-                        " ",
-                        _react2.default.createElement(
-                            "a",
-                            null,
-                            " Link 3 "
+                            " All Orders Past 7 days "
                         ),
                         " "
                     )

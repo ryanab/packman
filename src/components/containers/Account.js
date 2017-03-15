@@ -37,6 +37,10 @@ class Account extends Component{
       <div>
         <h3>Edit Account Information</h3>
         <div className="form-group">
+          <label>Name:</label>
+          <input onChange={this.updateProfile.bind(this)} id="name" type="text" className="form-control" placeholder={this.props.user.name} /> < br/>
+        </div>
+        <div className="form-group">
           <label>Email Address:</label>
           <input onChange={this.updateProfile.bind(this)} id="email" type="text" className="form-control" placeholder={this.props.user.email} /> < br/>
         </div>

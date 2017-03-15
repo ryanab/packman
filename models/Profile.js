@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 
 var ProfileSchema = new mongoose.Schema({
   email: {type: String, default: ''},
+  name: {type:String, default:''},
   password: {type:String, default:''},
   shipstationAPIKey: {type:String, default:''},
   shipstationAPISecret: {type:String, default:''},
@@ -12,6 +13,7 @@ var ProfileSchema = new mongoose.Schema({
 ProfileSchema.methods.summary = function(){
   var summary = {
     email: this.email,
+    name: this.name,
     account: this.account,
     timestamp: this.timestamp,
     shipstationAPIKey: this.shipstationAPIKey,
