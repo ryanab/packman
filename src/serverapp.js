@@ -6,7 +6,7 @@ class App extends Component {
   render(){
     return (
       <Provider store={this.props.route.initial}>
-        <Home {...this.props.children} />
+        <Home {...this.props} />
       </Provider>
     )
   }

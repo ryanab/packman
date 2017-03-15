@@ -51,6 +51,7 @@ router.get('/app', function(req, res, next){
       component: serverapp,
       initial: initialStore,
       indexRoute: {
+        component: Home,
         component: Orders
       }
     }
