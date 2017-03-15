@@ -4,3 +4,5 @@
 /public/landingTheme
 /public/build/js
 /public/build/es5
+/public/build/bundle.js
+/public/build/bundle.map
