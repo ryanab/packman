@@ -22,15 +22,16 @@ router.post('/order/:account', function(req,res,next){
         }
         //this must be moved to shipstation controller (this logic should not take place in route)
         var ordersArray = response.body.orders
+        var resultArray = []
         ordersArray.forEach(function(order, i){
-          order.items.forEach(function(order, i){
+          order.items.forEach(function(item, i){
             item.packed = false
           })
           order.account = account
           order.source = 'ShipStation'
           controllers.order.create(order)
           .then(function(response){
-            //send this to firebase or socket
+            resultArray.push(response)
           })
           .catch(function(err){
             console.log(err)
@@ -44,7 +45,7 @@ router.post('/order/:account', function(req,res,next){
 router.get('/order/:account', function(req, res, next){
   //Account passed in as work around until we set up authenticated requests
   var account = req.params.account
-  controllers.profile.findById(account)
+  controllers.profile.findById(account, true)
   .then(function(result){
     console.log('getting')
     var shipstationAPIKey = result.shipstationAPIKey
@@ -61,7 +62,7 @@ router.get('/order/:account', function(req, res, next){
       //this must be moved to shipstation controller (this logic should not take place in route)
       var ordersArray = response.body.orders
       ordersArray.forEach(function(order, i){
-        order.items.forEach(function(order, i){
+        order.items.forEach(function(item, i){
           item.packed = false
         })
         order.account = account
@@ -75,10 +76,7 @@ router.get('/order/:account', function(req, res, next){
           return
         })
         .catch(function(err){
-          res.json({
-            confirmation: 'fail',
-            message: 'error retrieving orders from shipstation'
-          })
+          console.log(err)
           return
         })
       })

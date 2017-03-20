@@ -17,7 +17,6 @@ ProfileSchema.methods.summary = function(){
     account: this.account,
     timestamp: this.timestamp,
     shipstationAPIKey: this.shipstationAPIKey,
-    shipstationAPISecret: this.shipStationAPISecret,
     id: this._id.toString()
   }
   return summary
